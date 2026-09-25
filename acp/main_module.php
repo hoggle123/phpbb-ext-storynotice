@@ -39,6 +39,8 @@ class main_module
 
 			$config->set('hoggle_storynotice_forums', implode(',', $ids));
 			$config->set('hoggle_storynotice_text', $request->variable('notice_text', '', true));
+			$config->set('hoggle_storynotice_show_top', $request->variable('show_top', 0) ? '1' : '0');
+			$config->set('hoggle_storynotice_show_bottom', $request->variable('show_bottom', 0) ? '1' : '0');
 
 			trigger_error($user->lang('STORYNOTICE_SAVED') . adm_back_link($this->u_action));
 		}
@@ -75,6 +77,8 @@ class main_module
 		$template->assign_vars(array(
 			'U_ACTION'		=> $this->u_action,
 			'NOTICE_TEXT'	=> $text,
+			'SHOW_TOP'		=> !empty($config['hoggle_storynotice_show_top']),
+			'SHOW_BOTTOM'	=> !isset($config['hoggle_storynotice_show_bottom']) || !empty($config['hoggle_storynotice_show_bottom']),
 		));
 	}
 }

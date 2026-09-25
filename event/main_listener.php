@@ -58,6 +58,13 @@ class main_listener implements EventSubscriberInterface
 			return;
 		}
 
+		$show_top = !empty($this->config['hoggle_storynotice_show_top']);
+		$show_bottom = !isset($this->config['hoggle_storynotice_show_bottom']) || !empty($this->config['hoggle_storynotice_show_bottom']);
+		if (!$show_top && !$show_bottom)
+		{
+			return;
+		}
+
 		$text = isset($this->config['hoggle_storynotice_text']) ? trim($this->config['hoggle_storynotice_text']) : '';
 		if ($text === '')
 		{
@@ -65,8 +72,9 @@ class main_listener implements EventSubscriberInterface
 		}
 
 		$this->template->assign_vars(array(
-			'S_HOGGLE_STORYNOTICE'	=> true,
-			'HOGGLE_STORYNOTICE_TEXT'	=> $text,
+			'S_HOGGLE_STORYNOTICE_TOP'		=> $show_top,
+			'S_HOGGLE_STORYNOTICE_BOTTOM'	=> $show_bottom,
+			'HOGGLE_STORYNOTICE_TEXT'		=> $text,
 		));
 	}
 
