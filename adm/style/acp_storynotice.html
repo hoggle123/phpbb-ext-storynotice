@@ -1,0 +1,33 @@
+<!-- INCLUDE overall_header.html -->
+
+<h1>{L_STORYNOTICE_TITLE}</h1>
+
+<p>{L_STORYNOTICE_EXPLAIN}</p>
+
+<form id="acp_storynotice" method="post" action="{U_ACTION}">
+	<fieldset>
+		<dl>
+			<dt><label for="notice_text">{L_STORYNOTICE_TEXT}{L_COLON}</label><br /><span>{L_STORYNOTICE_TEXT_EXPLAIN}</span></dt>
+			<dd><textarea name="notice_text" id="notice_text" rows="3" cols="60">{NOTICE_TEXT}</textarea></dd>
+		</dl>
+	</fieldset>
+
+	<fieldset>
+		<legend>{L_STORYNOTICE_FORUMS}</legend>
+		<p>{L_STORYNOTICE_FORUMS_EXPLAIN}</p>
+		<!-- BEGIN forums -->
+		<label style="display:block;margin:0.2em 0;">
+			<input type="checkbox" name="forums[]" value="{forums.ID}"<!-- IF forums.S_CHECKED --> checked="checked"<!-- ENDIF --> /> {forums.NAME}
+		</label>
+		<!-- END forums -->
+	</fieldset>
+
+	<fieldset>
+		<p class="submit-buttons">
+			<input class="button1" type="submit" id="submit" name="submit" value="{L_SUBMIT}" />
+		</p>
+		{S_FORM_TOKEN}
+	</fieldset>
+</form>
+
+<!-- INCLUDE overall_footer.html -->

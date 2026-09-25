@@ -47,10 +47,10 @@ class main_module
 		$raw = isset($config['hoggle_storynotice_forums']) ? $config['hoggle_storynotice_forums'] : '';
 		foreach (preg_split('/[^0-9]+/', (string) $raw) as $part)
 		{
-			id = (int) $part;
-			if ($id > 0)
+			$fid = (int) $part;
+			if ($fid > 0)
 			{
-				$selected[$id] = $id;
+				$selected[$fid] = $fid;
 			}
 		}
 
