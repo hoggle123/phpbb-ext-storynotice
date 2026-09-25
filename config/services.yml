@@ -4,7 +4,6 @@ services:
         arguments:
             - '@config'
             - '@dbal.conn'
-            - '@request'
             - '@template'
             - '@user'
         tags:

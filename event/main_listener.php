@@ -12,9 +12,6 @@ class main_listener implements EventSubscriberInterface
 	/** @var \phpbb\db\driver\driver_interface */
 	protected $db;
 
-	/** @var \phpbb\request\request_interface */
-	protected $request;
-
 	/** @var \phpbb\template\template */
 	protected $template;
 
@@ -24,14 +21,12 @@ class main_listener implements EventSubscriberInterface
 	public function __construct(
 		\phpbb\config\config $config,
 		\phpbb\db\driver\driver_interface $db,
-		\phpbb\request\request_interface $request,
 		\phpbb\template\template $template,
 		\phpbb\user $user
 	)
 	{
 		$this->config = $config;
 		$this->db = $db;
-		$this->request = $request;
 		$this->template = $template;
 		$this->user = $user;
 	}
@@ -63,11 +58,6 @@ class main_listener implements EventSubscriberInterface
 			return;
 		}
 
-		if (!$this->is_last_page($topic_data))
-		{
-			return;
-		}
-
 		$text = isset($this->config['hoggle_storynotice_text']) ? trim($this->config['hoggle_storynotice_text']) : '';
 		if ($text === '')
 		{
@@ -91,28 +81,5 @@ class main_listener implements EventSubscriberInterface
 			}
 		}
 		return false;
-	}
-
-	protected function is_last_page(array $topic_data)
-	{
-		$per_page = isset($this->config['posts_per_page']) ? (int) $this->config['posts_per_page'] : 10;
-		if ($per_page < 1)
-		{
-			$per_page = 10;
-		}
-
-		$start = $this->request->variable('start', 0);
-		if ($start < 0)
-		{
-			$start = 0;
-		}
-
-		$total = isset($topic_data['topic_posts_approved']) ? (int) $topic_data['topic_posts_approved'] : 0;
-		if ($total < 1)
-		{
-			return true;
-		}
-
-		return ($start + $per_page) >= $total;
 	}
 }
