@@ -1,0 +1,11 @@
+services:
+    hoggle.storynotice.listener:
+        class: hoggle\storynotice\event\main_listener
+        arguments:
+            - '@config'
+            - '@dbal.conn'
+            - '@request'
+            - '@template'
+            - '@user'
+        tags:
+            - { name: event.listener }

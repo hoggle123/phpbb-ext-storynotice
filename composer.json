@@ -1,0 +1,25 @@
+{
+    "name": "hoggle/storynotice",
+    "type": "phpbb-extension",
+    "description": "Feedback notice at the end of story topics, limited to chosen forums.",
+    "homepage": "https://github.com/hoggle123/phpbb-ext-storynotice",
+    "version": "1.0.0",
+    "time": "2026-09-25",
+    "license": "GPL-2.0-only",
+    "authors": [
+        {
+            "name": "hoggle",
+            "homepage": "https://github.com/hoggle123",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": ">=7.4"
+    },
+    "extra": {
+        "display-name": "Story Notice",
+        "soft-require": {
+            "phpbb/phpbb": ">=3.3.0,<4.0.0@dev"
+        }
+    }
+}
